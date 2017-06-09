@@ -1,4 +1,4 @@
-﻿using System.Xml.Serialization;
+using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
 using System;
@@ -70,12 +70,20 @@ namespace ConsoleApp2
                 double lErr = answers[p] - outputNeuron.output;
                 gError += Math.Abs(lErr);
                 outputNeuron.makeErrCh(lErr);
-                lErr = 0;
-                for (int i = 0; i < 1; i++) // стремная константа количества нейронов в слое, который у меня пока даже не массив
+                double[] lErrArr = new double[2]; //очередная стремная константа заменить
+                for (int i = 0; i < 3; i++) // стремная константа количества нейронов в слое, который у меня пока даже не массив
                 {
-
+                    hiddenNeurons[i].makeErrCh(outputNeuron.synapths[i]);
+                }//дико стремный цикл
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        inputNeurons[i].makeErrCh(hiddenNeurons[j].synapths[i]);
+                    }
                 }
-             
+
+
 
 
 
