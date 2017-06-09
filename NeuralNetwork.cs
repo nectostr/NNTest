@@ -71,13 +71,13 @@ namespace ConsoleApp2
                 gError += Math.Abs(lErr);
                 outputNeuron.makeErrCh(lErr);
                 double[] lErrArr = new double[2]; //очередная стремная константа заменить
-                for (int i = 0; i < 3; i++) // стремная константа количества нейронов в слое, который у меня пока даже не массив
+                for (int i = 0; i < hiddenNeurons.Length; i++) // стремная константа количества нейронов в слое, который у меня пока даже не массив
                 {
                     hiddenNeurons[i].makeErrCh(outputNeuron.synapths[i]);
                 }//дико стремный цикл
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < inputNeurons.Length; i++)
                 {
-                    for (int j = 0; j < 2; j++)
+                    for (int j = 0; j < hiddenNeurons.Length; j++)
                     {
                         inputNeurons[i].makeErrCh(hiddenNeurons[j].synapths[i]);
                     }
